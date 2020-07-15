@@ -3,14 +3,10 @@ const assert = require('assert')
 const sinon = require('sinon')
 const {Person, Network} = require('../src/shouty')
 
-describe('Person', () => {
-
-  let network, message
-  beforeEach(() => {
-    const range   = 100
-    network = new Network(range)
-    const message = "Free bagels!"
-  })
+describe('Network', function () {
+  const range   = 100
+  const network = new Network(range)
+  const message = "Free bagels!"
 
   it('broadcasts a message to a listener within range', function () {
     const shouterLocation = 0
@@ -46,6 +42,10 @@ describe('Person', () => {
     network.broadcast(message, shouterLocation)
 
     assert(lucyStub.hear.notCalled)
+  })
+
+  it('does not broadcast a message over 180 characters even if listener is in range', function () {
+
   })
 
 })
